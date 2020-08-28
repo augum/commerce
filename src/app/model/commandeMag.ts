@@ -1,4 +1,4 @@
-import{LcommandeMag} from '../model/lcommandemag';
+import{LcommandeMag} from './lcommandemag';
 export class CommandeMag {
     id :number;
     annee : number;
