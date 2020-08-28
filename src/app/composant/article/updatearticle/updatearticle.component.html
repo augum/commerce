@@ -1,0 +1,38 @@
+<mat-toolbar color="dark"></mat-toolbar>
+<div class="row">
+    <div class="col-md-6 col-lg-6">
+       <h1>Modification de l'article</h1>
+
+       <div class="form-group">
+        <input type="hidden" class="form-control" [(ngModel)]="data.code" >
+      </div>
+       <div class="form-group">
+            <label>Article</label>
+            <input matInput class="form-control" [(ngModel)]="data.libelle" >
+        </div>
+        
+        <div class="form-group">
+            <label>Prix d'achat</label>
+            <input type="number" matInput class="form-control" [(ngModel)]="data.pa" >
+        </div>
+        <div class="form-group">
+            <label>TVA</label>
+            <input type="number" matInput class="form-control" [(ngModel)]="data.tva" >
+        </div>
+        <div class="form-group">
+            <label>FODEC</label>
+            <input type="number" matInput class="form-control" [(ngModel)]="data.fodec" >
+        </div>
+        <div class="form-group">
+            <label>Prix de vente</label>
+            <input type="number" matInput class="form-control" [(ngModel)]="data.pv" >
+        </div>
+        <div class="form-group">
+            <label>Quantité</label>
+            <input type="number" matInput class="form-control" [(ngModel)]="qte" >
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" (click)="modifier()">VALIDER</button>
+        </div> 
+    </div>  
+</div>

@@ -1,0 +1,64 @@
+
+<br>
+<mat-toolbar color="dark"></mat-toolbar>
+   <mat-toolbar color="dark">
+    
+    <div>
+      <button class="btn btn-danger" (click)="generatePdf()">
+        <i class="fa fa-file-pdf-o"></i></button>
+      Liste des articles
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+             <li class="nav-link">
+                <a class="btn btn-sm btn-success text-white pull-right" (click)="onCreate()">
+                    <i class="fa fa-plus"></i>Ajouter Article </a>
+            </li>
+          
+        </ul>
+    </div>
+  </mat-toolbar>
+ <div *ngIf="articles" class="pricing-header mx-auto">
+   <div class="table-responsive">
+    <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+    <thead>
+    <tr>
+    <th scope="col">Code</th>
+    <th scope="col">Libelle </th>
+    <th scope="col">Prix Achat</th>
+    <th scope="col">Prix Vente </th>
+    <th scope="col">Stock initial </th>
+    <th scope="col">Stock actuelle </th>
+    <th scope="col">TVa </th>
+    <th scope="col">Fodec </th>
+    <th scope="col">Code magasin </th>
+    <th scope="col">Editer </th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    <tr *ngFor="let article of this.articleService.listData | paginate: { itemsPerPage: 10, currentPage: p }">
+    <td>{{article.code}}</td>
+    <td>{{article.libelle}}</td>
+    <td>{{article.pa}}</td>
+    <td>{{article.pv}}</td>
+    <td>{{article.stkinit}}</td>
+    <td>{{article.stock}}</td>
+    <td>{{article.tva}}</td>
+    <td>{{article.fodec}}</td>
+    <td>{{article.idMagasin}}</td>
+   
+    <td><button class="btn btn-warning btn btn-outline-dark ml-1" (click)="modifier(article)">
+      <i class="fa fa-pencil-square-o" ></i></button>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+  </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+ </div>
+
+
+
+

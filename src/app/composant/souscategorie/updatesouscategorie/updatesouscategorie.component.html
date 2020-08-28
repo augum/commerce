@@ -1,0 +1,20 @@
+<mat-toolbar color="dark"></mat-toolbar>
+<div class="row">
+    <div class="col-md-6 col-lg-6">
+       <h1>Modification de la sous-catégorie</h1>
+
+       <div class="form-group">
+        <input type="hidden" class="form-control" [(ngModel)]="data.code" >
+      </div>
+       <div class="form-group">
+            <label>Sous catégorie</label>
+            <input matInput class="form-control" [(ngModel)]="data.libelle" >
+        </div>
+        <div class="form-group">
+            <input type="hidden"  class="form-control" [(ngModel)]="data.categorie">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" (click)="modifier()">VALIDER</button>
+        </div> 
+    </div>  
+</div>

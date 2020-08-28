@@ -1,0 +1,59 @@
+<mat-toolbar color="dark"></mat-toolbar>
+   <mat-toolbar color="dark">
+    <div fxHide.gt-xs>
+        <button mat-icon-button >
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div>
+      Liste Clients
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+             <li>
+                <a class="btn btn-sm btn-success text-white pull-right" (click)="onCreate()">
+                    <i class="fa fa-plus"></i>Ajouter nouveu </a>
+          </li>
+        </ul>
+    </div>
+  </mat-toolbar>
+
+   <div *ngIf="clients" class="pricing-header mx-auto col-md-12 col-md-offset-2" >
+     <div class="table-responsive">
+      <table class="table table-bordered table-responsive-sm table-responsive-md
+     table-responsive-lg">
+      <thead>
+      <tr>
+      <th scope="col">Code</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">Téléphone</th>
+      <th scope="col">Email</th>
+      <th class="text-center" scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let client of clients._embedded.clients">
+        <td>{{client.codel}}</td>
+        <td>{{client.libelle}}</td>
+        <td>{{client.adresse}}</td>
+        <td>{{client.tel}}</td>
+        <td>{{client.email}}</td>
+        <td>
+            <button class="btn btn-warning" (click)="modifier(client)">
+            <i class="fa fa-pencil-square-o"></i>
+           </button>
+        </td>
+        <td>
+            <button class="btn btn-danger" (click)="supprimer(client)">
+            <i class="fa fa-trash-o"></i>
+           </button>
+        </td>
+         </tr>
+           </tbody>
+           </table>
+           </div>
+         </div>
+
+
+

@@ -1,0 +1,50 @@
+<mat-toolbar color="dark"></mat-toolbar>
+<mat-toolbar color="dark">
+    <div fxHide.gt-xs>
+        <button mat-icon-button >
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div>
+      Liste Catégorie
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+             <li>
+                <a class="btn btn-sm btn-success text-white pull-right" (click)="onCreate()">
+                    <i class="fa fa-plus"></i>Add SCatégorie </a>
+          </li>
+            
+        </ul>
+    </div>
+  </mat-toolbar>
+ <div class="pricing-header mx-auto">
+   <div class="table-responsive">
+    <table class="table table-bordered table-responsive-sm table-responsive-md
+   table-responsive-lg">
+    <thead>
+    <tr>
+    <th scope="col">Code</th>
+    <th scope="col">Code Catég</th>
+    <th scope="col">Libelle </th>
+    <th class="text-center" scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    <tr *ngFor="let scategorie of sousCats._embedded.scategories">
+    <td>{{scategorie.code}}</td>
+    <td>{{scategorie.code_categ}}</td>
+    <td>{{scategorie.libelle}}</td>
+    
+   
+    <td><button class="btn btn-warning"  (click)="modifier(scategorie)">
+      <i class="fa fa-pencil-square-o" ></i></button></td>
+   <td><button class="btn btn-danger" (click)="supprimer(scategorie)">
+      <i class="fa fa-trash-o"></i></button></td>
+       </tr>
+         </tbody>
+         </table>
+         </div>
+       </div>

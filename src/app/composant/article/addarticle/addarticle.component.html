@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-md-12 col-md-offset-2 ">
+       <h1>Ajout Article</h1>
+       <form [formGroup]="formtemplate" (submit)="addArticle(formtemplate.value)">
+        <div class="col-md-6 col-md-offset-2 scroll">
+            <div class="form-group">
+                <input  class="form-control" formControlName="libelle" placeholder="Article">
+                <div class="text-danger" *ngIf="isSubmitted && formControls.libelle.errors?.required">Champ obligatoire.</div>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" formControlName="pa" placeholder="Prix achat">
+                <div class="text-danger" *ngIf="isSubmitted && formControls.pa.errors?.required">Champ obligatoire.</div>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" formControlName="tva" placeholder="tva">
+                <div class="text-danger" *ngIf="isSubmitted && formControls.tva.errors?.required">Champ obligatoire.</div>
+            </div>
+            <div class="form-group">
+                <input type="number"  class="form-control" formControlName="fodec" placeholder="Fodec">
+                <div class="text-danger" *ngIf="isSubmitted && formControls.fodec.errors?.required">Champ obligatoire.</div>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" formControlName="pv" placeholder="Prix de vente">
+                <div class="text-danger" *ngIf="isSubmitted && formControls.pv.errors?.required">Champ obligatoire.</div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6 col-md-offset-2 scroll">
+            <div class="form-group">
+            <input type="number" class="form-control" formControlName="stkinit" placeholder="Stock initial">
+            <div class="text-danger" *ngIf="isSubmitted && formControls.stkinit.errors?.required">Champ obligatoire.</div>
+        </div>
+        <div class="form-group">
+            <input type="number"  class="form-control" formControlName="stock" placeholder="Stock actuel">
+            <div class="text-danger" *ngIf="isSubmitted && formControls.stock.errors?.required">Champ obligatoire.</div>
+        </div>
+        <div class="form-group" >
+            <label>Categorie</label>
+            <select class="form-control" formControlName="codeCateg" placeholder="Categorie" (change)="onSelectCateg($event.target.value)"[(ngModel)]="cat">
+                <option value="0">-select-</option>
+                <option *ngFor="let categorie of categories._embedded.categories" value="{{categorie.code}}">{{categorie.libelle}}</option>
+            </select>
+        </div>
+        <div class="form-group" >
+            <label>Sous catégorie</label>
+            <select class="form-control" formControlName="codeScateg" placeholder="Sous categorie" >
+                <option value="0">-select-</option>
+                <option *ngFor="let scategorie of scategories._embedded.scategories" value="{{scategorie.code}}">{{scategorie.libelle}}</option>
+            </select>
+        </div>
+        <div class="form-group" >
+            <label>Magasin</label>
+            <select class="form-control" formControlName="idMagasin" placeholder="Magasin" >
+                <option value="0">-select-</option>
+                <option *ngFor="let magasin of magasins._embedded.magasins" value="{{magasin.id}}">{{magasin.libelle}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">VALIDER</button>
+          </div> 
+            
+        </div>
+        
+        
+        
+        
+      </form>
+      <div mat-dialog-actions>
+        <button mat-button >No Thanks</button>
+      </div>
+    
+    </div>  
+</div>
+

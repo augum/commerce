@@ -1,0 +1,67 @@
+<mat-nav-list id="sidebar">
+  <ul class="list-unstyled components">
+    <p>MENU</p>
+    <li>
+        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-database"></i>GESTION DEPOT</a>
+        <ul class="collapse list-unstyled" id="homeSubmenu">
+            <li>
+                <a routerLink ="/commandemag"><i class="fa fa-address-book-o"></i>Bon de livraison</a>
+            </li>
+            <li>
+                <a routerLink ="/lcommag"><i class="fa fa-address-card-o"></i>Liste des bons de livraison</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-laptop"></i>GESTION DES PRODUITS</a>
+        <ul class="collapse list-unstyled" id="pageSubmenu">
+            
+            <li>
+                <a routerLink ="/listecategorie"><i class="fa fa-folder"></i>Catégorie</a>
+            </li>
+            <li>
+                <a routerLink ="/listesouscategorie"><i class="fa fa-folder-open"></i>Sous Catégorie</a>
+            </li>
+            <li>
+                <a routerLink ="/listearticle"><i class="fa fa-motorcycle"></i>Produits</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+      <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cogs"></i>ADMINISTRATION</a>
+      <ul class="collapse list-unstyled" id="adminSubmenu">
+          <li>
+              <a routerLink ="/register">Création utilisateur</a>
+          </li>
+          <li>
+              <a routerLink ="/magasin">Création magasin</a>
+          </li>
+          <li>
+              <a routerLink="/listeclient">Création des clients</a>
+          </li>
+          <li>
+            <a routerLink="/listeclient"><i class="	fa fa-calendar-check-o"></i>Compteur</a>
+        </li>
+      </ul>
+   </li>
+   <li>
+    <a href="#comptoirSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-shopping-cart"></i>COMPTOIRE</a>
+    <ul class="collapse list-unstyled" id="comptoirSubmenu">
+        <li>
+            <a routerLink ="/commande">Facturation</a>
+        </li>
+        <li>
+            <a routerLink ="/livraison">Proformat</a>
+        </li>
+        <li>
+            <a routerLink ="/lcomm">Liste des factures</a>
+
+        </li>
+        <li>
+            <a routerLink ="/llivr">Liste des proformats</a>
+        </li>
+    </ul>
+ </li>
+</ul>
+</mat-nav-list>
+
