@@ -3,7 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { CommandeMag } from '../model/commandemag';
+//import { CommandeMag } from '../model/commandemag';
 import { Lcommande } from '../model/lcommande';
 import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule,Validators }from '@angular/forms';
 import { ClientService } from './client.service';
@@ -21,7 +21,7 @@ export class CommandemagService implements OnInit {
   livr;
   llivr;
   client;
-  commande : CommandeMag;
+  
  
   constructor(private http:HttpClient,private toastr: ToastrService,private clientService:ClientService,
     private llservice:LcommandemagService) { }
