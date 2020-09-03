@@ -31,7 +31,7 @@ placeholder="Recherche..." aria-label="Search" aria-describedby="basic-addon2">
 <tbody>
 <tr *ngFor="let comm of commandeListe | paginate: { itemsPerPage:5, currentPage: p }">
 <td>{{comm.numero}}</td>
-<td>{{comm.date_comm| date:'dd/MM/yyyy'}}</td>
+<td>{{comm.date| date:'dd/MM/yyyy'}}</td>
 <td>{{comm.code_client}}</td>
 <td>{{comm.lib_client}}</td>
 <td>{{comm.libelle}}</td>
@@ -42,7 +42,7 @@ placeholder="Recherche..." aria-label="Search" aria-describedby="basic-addon2">
 <a class="btn text-danger" (click)="onDelete(comm.id)"><i class="fa fa-trash fa-lg">
 
 </i> </a>
-<a class="btn text-danger" (click)="onSelect(comm)"><i class="fa fa-pencil fa-lg">
+<a class="btn text-danger" (click)="onSelect(comm)"><i class="fa fa-tags">
 
 </i> </a>
 <a class="btn text-danger" (click)="ongeneratePDF(comm.id)"><i class="fa fa-file-pdf-o">

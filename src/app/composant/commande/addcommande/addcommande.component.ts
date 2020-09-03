@@ -58,7 +58,7 @@ ngOnInit() {
     this.Date = this.transformDate(new Date(Date.now()));
     this.annee = (this.Date).toString().substring(0,4);
     this.f['annee'].setValue(this.annee);
-    this.f['date_comm'].setValue(this.Date);
+    this.f['date'].setValue(this.Date);
     this.f['mag'].setValue(localStorage.getItem('magasin'));
     this.onSelectCompteur(this.annee);
     }
@@ -70,7 +70,7 @@ ngOnInit() {
     this.lcommservice.getAll(this.service.formData.value.numero).subscribe(
      response =>{this.service.list = response}
      );
-     this.f['date_comm'].setValue(this.service.formData.value.date_comm);
+     this.f['date'].setValue(this.service.formData.value.date_comm);
      this.f['mag'].setValue(localStorage.getItem('magasin'));
     }
 
@@ -95,7 +95,7 @@ InfoForm() {
       id :null,
       annee : 0,
       numero : 0,
-      date_comm : '',
+      date : '',
       code_client : 0,
       lib_client : '',
       libelle : '',

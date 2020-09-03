@@ -5,7 +5,7 @@ export class Commande {
     numero : number;
     code_client : number;
     lib_client : string;
-    date_comm : any;
+    date : any;
     libelle : String;
     totht : number;
     tottva : number;
