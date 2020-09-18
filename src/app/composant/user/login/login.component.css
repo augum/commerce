@@ -1,3 +1,7 @@
 body{
-    background: #394a59;
+    background-image: url(/assets/login/img/loginec.jpg);
+}
+.container{
+    margin-top: -0.25rem !important;
+    text-decoration-color: bisque;
 }

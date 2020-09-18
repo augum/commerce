@@ -28,15 +28,15 @@ export class ListcommandeComponent implements OnInit {
   ngOnInit() {
     
     this.refreshListe();
+    this.getData();
     
   }
 refreshListe(){
-  this.service.getAll().subscribe(
+  this.service.getAll1().subscribe(
     response =>{this.commandeListe = response;}
    );
 
 }
-
 
   onDelete(id: number) {
    
@@ -66,9 +66,137 @@ onSelect(item :Commande){
 transformDate(date){
   return this.datePipe.transform(date, 'yyyy-MM-dd');
 }
-ongeneratePDF(id:number){
-  const document = this.service.getDocument(id);
-  pdfMake.createPdf(document).open();
+getData() {
+  this.service.getAll1().subscribe(
+    response =>{this.service.listData = response;console.log(this.service.listData)}
+   );
+ 
+}
+generatePdf(){
+  const documant =this.getDocument();
+  pdfMake.createPdf(documant).open();
+}
+getDocument(){
+  return{
+    content:[
+      
+       
+       {
+         text:new Date().toLocaleDateString(),
+         alignment:'right'
+       },
+       {
+         text:new Date().toLocaleTimeString(),
+         alignment:'right'
+       },
+       {
+         text:'Général motors',
+         style:'name'
+       },
+       {
+         text:'vente des pièces de rechange auto',
+         style:'ligne'
+       },
+       {
+         text:'Email:samasoft@gmail.com',
+         color:'blue',
+       },
+       {
+         text:'Tel:0817454018',
+         color:'blue',
+       }, 
+       
+      {
+        text:'Liste des commandes',
+        bold:true,
+        fontSize:20,
+        alignment:'center',
+        margin:[0,0,0,20]
+      },
+
+      this.getList(this.service.listData),
+      {
+
+      },
+      {
+        text:'Signature',
+        style:'sign',
+        alignment:'right'
+      },
+      
+    ],
+    styles:{
+      header:{
+        fontSize: 18,
+        bold:true,
+        margin:[0,20,0,10],
+        decoration:'underline'
+      },
+      name:{
+        fontsize: 16,
+        bold:true
+      },
+      total:{
+        fontSize:12,
+        bold:true,
+        italics:true
+      },
+      ligne:{
+       fontSize:12,
+       bold:true,
+       italics:true
+     },
+      sign:{
+        margin:[0,50,0,10],
+        alignment:'right',
+        italics:true
+      },
+      tableHeader:{
+        bold:true,
+        fontSize:15,
+        alignment:'center'
+      }
+    }
+  }
+}
+getList(items: Commande[]){
+  return{
+    table:{
+       widths:['*','*','*','*','*','*'],
+       body:[
+         [
+         {
+           text:'Numero',
+           style:'tableHeader'
+         },
+         {
+           text:'date',
+           style:'tableHeader'
+         },
+         {
+           text:'Libelle',
+           style:'tableHeader'
+         },
+         {
+           text:'Client',
+           style:'tableHeader'
+         },
+         {
+           text:'TTc',
+           style:'tableHeader'
+         },
+         {
+          text:'Moyen payement',
+          style:'tableHeader'
+        },
+         
+         ],
+         ...items.map(ed=>{
+           return[ed.numero,ed.date,ed.libelle,ed.lib_client,ed.totttc,ed.modepayement];
+         })
+       ]
+    }
+  }
 }
 }
 

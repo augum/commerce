@@ -31,7 +31,7 @@ export class ListlivrComponent implements OnInit {
       
     }
   refreshListe(){
-    this.service.getAll().subscribe(
+    this.service.getAll1().subscribe(
       response =>{this.commandeListe = response;}
      );
   

@@ -10,13 +10,14 @@ import { Categorie } from '../model/categorie';
 export class SouscategorieService {
 
   public host:string="http://localhost:8080";
+  public baseUrl = '/api/scategories/5';
   constructor(private http:HttpClient) { }
 
   public getSCategorie(){
      return this.http.get(this.host+"/scategories");
   }
-  public getdata(url:string){
-    return this.http.get(url);
+  public getdata(code_categ:string):Observable<any>{
+    return this.http.get(`${this.baseUrl}/${code_categ}`);
  }
   public addSCategorie(scategorie:Souscategorie){
       return this.http.post(this.host+"/scategories",scategorie);

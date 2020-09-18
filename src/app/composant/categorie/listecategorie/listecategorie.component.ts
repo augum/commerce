@@ -49,9 +49,11 @@ modifier(categorie){
  }
  onCreate(){
   const dialogConfig = new MatDialogConfig();
-  dialogConfig.disableClose= false;
   dialogConfig.autoFocus = true;
+  dialogConfig.disableClose = true;
   dialogConfig.width="50%";
-  this.dialog.open(AddcategorieComponent,dialogConfig);
+  this.dialog.open(AddcategorieComponent,dialogConfig).afterClosed().subscribe(b10=>{
+    this.getCategorie();
+  });
  }
 }

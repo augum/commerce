@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { SouscategorieService } from 'src/app/services/souscategorie.service';
 import { ToastrService } from 'ngx-toastr';
 import { CategorieService } from 'src/app/services/categorie.service';
@@ -6,7 +6,7 @@ import { ClientService } from 'src/app/services/client.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ArticleService } from 'src/app/services/article.service';
 import { MagasinService } from 'src/app/services/magasin.service';
-import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { MatDialogConfig, MatDialog,MAT_DIALOG_DATA,MatDialogRef } from '@angular/material/dialog';
 import { Categorie } from 'src/app/model/categorie';
 
 @Component({
@@ -35,10 +35,12 @@ export class AddarticleComponent implements OnInit {
     idMagasin: new FormControl('',Validators.required),
   })
   constructor(private dialog:MatDialog,private articleService:ArticleService,private scategorieservice:SouscategorieService,private toastr: ToastrService,
-    private categorieService:CategorieService, private magasinService:MagasinService) { }
+    private categorieService:CategorieService, private magasinService:MagasinService,
+    @Inject(MAT_DIALOG_DATA)  public data,
+        public dialogRef:MatDialogRef<AddarticleComponent>) { }
 
   ngOnInit(): void {
-    this.getsousCategorie();
+    //this.getsousCategorie();
     this.getCategorie();
     this.getMagasin();
   }
@@ -54,7 +56,8 @@ export class AddarticleComponent implements OnInit {
       console.log(error);
       this.toastr.error('Erreur','Article non enregistrée');
     })
-  }
+  };
+  this.dialogRef.close();
 }
 get formControls(){
   return this.formtemplate['controls'];
@@ -104,14 +107,14 @@ getsousCategorie(){
         console.log(err);
      })
 }
-onSelectCateg(url:string){
+onSelectCateg(code_categ: string){
   console.log(this.cat);
-  /*this.scategorieservice.getdata(url)
+  this.scategorieservice.getdata(code_categ)
   .subscribe(data=>{
     this.scategories = data;
-    console.log(this.cat);
+    console.log(this.scategories)
   }, err=>{
      console.log(err);
-  })*/
+  })
 }
 }

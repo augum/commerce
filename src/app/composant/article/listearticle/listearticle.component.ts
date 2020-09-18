@@ -28,7 +28,7 @@ export class ListearticleComponent implements OnInit {
     this.articleService.getArticle()
        .subscribe(data=>{
          this.articles = data;
-         console.log(this.articles);
+         
        }, err=>{
           console.log(err);
        })
@@ -41,10 +41,13 @@ export class ListearticleComponent implements OnInit {
   }
   onCreate(){
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose= false;
     dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
     dialogConfig.width="50%";
-    this.dialog.open(AddarticleComponent,dialogConfig);
+    this.dialog.open(AddarticleComponent,dialogConfig).afterClosed().subscribe(b10=>{
+      this.getData();
+      this.getArticle();
+    });
    }
    modifier(article){
     let navigationExtras: NavigationExtras={

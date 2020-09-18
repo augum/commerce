@@ -9,20 +9,24 @@ from '@angular/forms';
 import { ClientService } from './client.service';
 import { style } from '@angular/animations';
 import { LlivrService } from './llivr.service';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LivrService {
   private baseUrl = '/api/Livrs';
+  public host:string="http://localhost:8080";
   public formData:  FormGroup; 
   livr;
   llivr;
   client;
   list: any={}
   commande : Livr;
+  mag;
+  datej;
   constructor(private http:HttpClient,private toastr: ToastrService,private clientService:ClientService,
-    private llservice:LlivrService) { }
+    private llservice:LlivrService,private datePipe : DatePipe) { }
     choixmenu : string  = "A";
   getData(id: number): Observable<Object> {
     return this.http.get(`${this.baseUrl}/${id}`);
@@ -46,6 +50,14 @@ export class LivrService {
 
   getAll(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
+  }
+  getAll1(): Observable<any> {
+    this.mag = localStorage.getItem('magasin');
+    this.datej = this.transformDate(new Date(Date.now()));
+    return this.http.get(this.host+"/api/livrsd?"+"mag="+this.mag+"&"+"date="+this.datej);
+  }
+  transformDate(date){
+    return this.datePipe.transform(date, 'yyyy-MM-dd');
   }
   getDocument(id:number){
     this.getData(id).subscribe(

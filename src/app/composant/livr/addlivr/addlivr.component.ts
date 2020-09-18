@@ -58,6 +58,8 @@ export class AddlivrComponent implements OnInit {
        this.Date = this.transformDate(new Date(Date.now()));
        this.annee = (this.Date).toString().substring(0,4);
        this.f['annee'].setValue(this.annee);
+       this.f['date'].setValue(this.Date);
+       this.f['mag'].setValue(localStorage.getItem('magasin'));
        this.onSelectCompteur(this.annee);
        }
          else
@@ -68,7 +70,7 @@ export class AddlivrComponent implements OnInit {
        this.lcommservice.getAll(this.service.formData.value.numero).subscribe(
         response =>{this.service.list = response}
         );
-        this.f['date_comm'].setValue(this.service.formData.value.date_comm);
+        this.f['date'].setValue(this.service.formData.value.date);
        }
    
     this.clientService.getAll().subscribe(
@@ -92,13 +94,14 @@ export class AddlivrComponent implements OnInit {
          id :null,
          annee : 0,
          numero : 0,
-         date_comm : '',
+         date : '',
          code_client : 0,
          lib_client : '',
          libelle : '',
          totht : 0,
          tottva : 0,
          totttc : 0,
+         mag:'',
          lcomms :[],
          });
        } 

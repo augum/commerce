@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SouscategorieService } from 'src/app/services/souscategorie.service';
 import { CategorieService } from 'src/app/services/categorie.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-addsoucategorie',
@@ -18,7 +19,9 @@ export class AddsoucategorieComponent implements OnInit {
     libelle: new FormControl('',Validators.required),
     code_categ: new FormControl('',Validators.required)
   })
-  constructor(private scategorieservice:SouscategorieService,private toastr: ToastrService,private categorieService:CategorieService) { }
+  constructor(private scategorieservice:SouscategorieService,private toastr: ToastrService,private categorieService:CategorieService,
+    @Inject(MAT_DIALOG_DATA)  public data,
+        public dialogRef:MatDialogRef<AddsoucategorieComponent>) { }
 
   ngOnInit(): void {
     this.getCategorie();
@@ -35,7 +38,8 @@ export class AddsoucategorieComponent implements OnInit {
       console.log(error);
       this.toastr.error('Erreur','Sous categorie non enregistrée');
     })
-  }
+  };
+  this.dialogRef.close();
 }
 get formControls(){
   return this.formtemplate['controls'];

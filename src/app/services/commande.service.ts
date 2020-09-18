@@ -7,6 +7,8 @@ import { Lcommande } from '../model/lcommande';
 import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule,Validators }from '@angular/forms';
 import { ClientService } from './client.service';
 import { LcommandeService } from './lcommande.service';
+import { MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
+import { DatePipe } from '@angular/common';
 
 
 @Injectable({
@@ -14,15 +16,19 @@ import { LcommandeService } from './lcommande.service';
 })
 export class CommandeService implements OnInit {
   private baseUrl = '/api/comms';
+  public host:string="http://localhost:8080";
   public formData:  FormGroup; 
   list: any={};
+  listData : Commande[];
   livr;
   llivr;
   client;
   commande : Commande;
+  mag;
+  datej;
  
   constructor(private http:HttpClient,private toastr: ToastrService,private clientService:ClientService,
-    private llservice:LcommandeService) { }
+    private llservice:LcommandeService,private datePipe : DatePipe) { }
     ngOnInit() {
     
       this.livr ="";
@@ -61,12 +67,20 @@ export class CommandeService implements OnInit {
   getAll(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
   }
+  getAll1(): Observable<any> {
+    this.mag = localStorage.getItem('magasin');
+    this.datej = this.transformDate(new Date(Date.now()));
+    return this.http.get(this.host+"/api/commsd?"+"mag="+this.mag+"&"+"date="+this.datej);
+  }
   
   deleteAll(id: number): Observable<any> {
   
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
 
+  transformDate(date){
+    return this.datePipe.transform(date, 'yyyy-MM-dd');
+  }
   getDocument(id:number){
     this.getData(id).subscribe(
     response=>{

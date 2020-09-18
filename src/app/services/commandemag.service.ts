@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule,Validators }fr
 import { ClientService } from './client.service';
 import { LcommandeService } from './lcommande.service';
 import { LcommandemagService } from './lcommandemag.service';
+import { DatePipe } from '@angular/common';
 
 
 @Injectable({
@@ -15,14 +16,17 @@ import { LcommandemagService } from './lcommandemag.service';
 })
 export class CommandemagService implements OnInit {
   private baseUrl = '/api/commMags';
+  public host:string="http://localhost:8080";
   public formData:  FormGroup; 
   list: any={};
   livr;
   llivr;
   client;
+  mag;
+  datej;
   
   constructor(private http:HttpClient,private toastr: ToastrService,private clientService:ClientService,
-    private llservice:LcommandemagService) { }
+    private llservice:LcommandemagService,private datePipe : DatePipe) { }
     ngOnInit() {
     
       this.livr ="";
@@ -51,10 +55,17 @@ export class CommandemagService implements OnInit {
   getAll(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
   }
-  
+  getAll1(): Observable<any> {
+    this.mag = localStorage.getItem('magasin');
+    this.datej = this.transformDate(new Date(Date.now()));
+    return this.http.get(this.host+"/api/commagsd?"+"mag="+this.mag+"&"+"date="+this.datej);
+  }
   deleteAll(id: number): Observable<any> {
   
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+  }
+  transformDate(date){
+    return this.datePipe.transform(date, 'yyyy-MM-dd');
   }
    
 }

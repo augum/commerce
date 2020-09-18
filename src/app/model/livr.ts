@@ -5,11 +5,12 @@ export class Livr {
     numero : number;
     code_client : number;
     lib_client : String;
-    date_comm : any;
+    date : any;
     libelle : String;
     totht : number;
     tottva : number;
     totttc : number;
+    mag:string;
     lcomms :Array<Llivr> =[];
     
 }

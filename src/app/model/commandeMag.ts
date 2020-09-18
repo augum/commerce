@@ -3,9 +3,9 @@ export class CommandeMag {
     id :number;
     annee : number;
     numero : number;
-    code_client : number;
-    lib_client : string;
-    date_comm : any;
+    code_mag : number;
+    lib_mag : string;
+    date : any;
     libelle : String;
     totht : number;
     tottva : number;

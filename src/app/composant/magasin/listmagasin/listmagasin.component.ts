@@ -43,7 +43,8 @@ export class ListmagasinComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width="50%";
-    this.dialog.open(AddmagasinComponent, dialogConfig).afterClosed().subscribe(b10=>{
+    this.dialog.open(AddmagasinComponent,dialogConfig).afterClosed().subscribe(b10=>{
+      this.getmagasin();
     });
   }
 }

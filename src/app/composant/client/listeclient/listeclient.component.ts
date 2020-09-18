@@ -51,9 +51,13 @@ export class ListeclientComponent implements OnInit {
  }
  onCreate(){
   const dialogConfig = new MatDialogConfig();
-  dialogConfig.disableClose= false;
   dialogConfig.autoFocus = true;
+  dialogConfig.disableClose = true;
   dialogConfig.width="50%";
-  this.dialog.open(AddclientComponent,dialogConfig);
+  this.dialog.open(AddclientComponent,dialogConfig).afterClosed().subscribe(b10=>{
+    this.getClient();
+  });
  }
+
+ 
 }

@@ -34,11 +34,11 @@ export class SidemenuComponent implements OnInit {
 
   ngOnInit(): void {
      
-    /*this.name = localStorage.getItem('name');
+    this.name = localStorage.getItem('name');
     this.magasin = localStorage.getItem('magasin');
     this.role = localStorage.getItem('role');
     this.annee = parseInt(localStorage.getItem('annee'));
-    console.log(this.userService.admin);*/
+    console.log(this.role);
 
   }
   public logout() {

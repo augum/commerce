@@ -1,7 +1,7 @@
 <mat-nav-list id="sidebar">
   <ul class="list-unstyled components">
     <p>MENU</p>
-    <li>
+    <li *ngIf="role==='admin'">
         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-database"></i>GESTION DEPOT</a>
         <ul class="collapse list-unstyled" id="homeSubmenu">
             <li>
@@ -12,7 +12,7 @@
             </li>
         </ul>
     </li>
-    <li>
+    <li *ngIf="role==='admin'" >
         <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-laptop"></i>GESTION DES PRODUITS</a>
         <ul class="collapse list-unstyled" id="pageSubmenu">
             
@@ -27,7 +27,7 @@
             </li>
         </ul>
     </li>
-    <li>
+    <li *ngIf="role==='admin'" >
       <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cogs"></i>ADMINISTRATION</a>
       <ul class="collapse list-unstyled" id="adminSubmenu">
           <li>
@@ -44,7 +44,7 @@
         </li>
       </ul>
    </li>
-   <li>
+   <li *ngIf="role==='User'" >
     <a href="#comptoirSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-shopping-cart"></i>COMPTOIRE</a>
     <ul class="collapse list-unstyled" id="comptoirSubmenu">
         <li>
@@ -53,6 +53,12 @@
         <li>
             <a routerLink ="/livraison">Proformat</a>
         </li>
+        
+    </ul>
+ </li>
+ <li *ngIf="role==='User' || role==='admin'"  >
+    <a href="#rapportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-print "></i>RAPPORT</a>
+    <ul class="collapse list-unstyled" id="rapportSubmenu">
         <li>
             <a routerLink ="/lcomm">Liste des factures</a>
 

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ClientService } from 'src/app/services/client.service';
 import { Client } from 'src/app/model/client';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-addclient',
@@ -20,7 +21,9 @@ export class AddclientComponent implements OnInit {
     tel: new FormControl('',Validators.required),
     email: new FormControl()
   })
-  constructor(private clientservice:ClientService,private toastr: ToastrService) { }
+  constructor(private clientservice:ClientService,private toastr: ToastrService,
+    @Inject(MAT_DIALOG_DATA)  public data,
+    public dialogRef:MatDialogRef<AddclientComponent>) { }
 
   ngOnInit(): void {
     this.ressetForm();
@@ -35,6 +38,7 @@ export class AddclientComponent implements OnInit {
       .subscribe(data=>{
         this.toastr.success('Client enregistré avec succès');
         this.ressetForm();
+        this.dialogRef.close();
      }, error => {
       console.log(error);
       this.toastr.error('Erreur','le client non enregistré');
@@ -47,6 +51,9 @@ export class AddclientComponent implements OnInit {
   get formControls(){
     return this.formtemplate['controls'];
  }
+ close(){
+  this.dialogRef.close();
+}
   ressetForm(){
     this.formtemplate.reset();
     this.formtemplate.setValue({
